@@ -17,7 +17,6 @@ OBJECTb= udpserver.o sample.o
 OBJECTb1= udpecho.o
 OBJECTc= tcpclient.o rnd.o
 OBJECTd= tcpserver.o sample.o
-OBJECTe= icmpclient.o rnd.o
 OBJECT= server.o sample.o version.o
 
 GIT_VERSION := $(shell git describe --abbrev=4 --dirty --always --tags)
@@ -28,7 +27,6 @@ targetb=udpserver
 targetb1=udpecho
 targetc=tcpclient
 targetd=tcpserver
-targete=icmpclient
 target=server
 
 
@@ -38,7 +36,6 @@ all: $(OBJECTa)	$(OBJECTb) $(OBJECTb1) $(OBJECTc) $(OBJECTd) $(OBJECTe) $(OBJECT
 	$(CC) -o $(targetb1) $(OBJECTb1)
 	$(COMPILE) -o $(targetc) $(OBJECTc)
 	$(COMPILE) -o $(targetd) $(OBJECTd)
-	$(COMPILE) -o $(targete) $(OBJECTe)
 	$(COMPILE) -o $(target) $(OBJECT)
 
 clean:
@@ -51,7 +48,6 @@ install:
 	install -m 0755 udpecho $(PREFIX)/bin
 	install -m 0755 tcpclient $(PREFIX)/bin
 	install -m 0755 tcpserver $(PREFIX)/bin
-	install -m 0755 icmpclient $(PREFIX)/bin
 	install -m 0755 server $(PREFIX)/bin
 
 
@@ -80,8 +76,6 @@ tcpserver.o: tcpserver.cpp
 tcpclient.o: tcpclient.cpp
 	$(COMPILE) $(CARG) tcpclient.cpp
 
-icmpclient.o: icmpclient.cpp
-	$(COMPILE) $(CARG) icmpclient.cpp
 
 version.o: .FORCE
 	$(GIT) rev-parse HEAD | awk ' BEGIN {print "#include \"version.h\""} {print "const char * build_git_sha = \"" $$0"\";"} END {}' > version.c
