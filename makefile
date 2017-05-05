@@ -5,7 +5,7 @@ COMPILE=g++
 CC=gcc
 LINK=g++
 GIT=git
-CARG=-c -O4 -Wall -DVERSION=\"$(GIT_VERSION)\"
+CARG= -std=c++11 -c -O4 -Wall -DVERSION=\"$(GIT_VERSION)\"
 
 DESTDIR=/
 PREFIX=$(DESTDIR)/usr/local
