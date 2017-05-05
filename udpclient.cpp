@@ -28,6 +28,7 @@
 
 
 
+#define bzero(s, n) memset((s), 0, (n))
 
 using namespace std;
 
